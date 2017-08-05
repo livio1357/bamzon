@@ -1,0 +1,24 @@
+{
+  "name": "bamzon",
+  "version": "1.0.0",
+  "description": "Bamzon",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livio1357/bamzon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livio1357/bamzon/issues"
+  },
+  "homepage": "https://github.com/livio1357/bamzon#readme",
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "mysql": "^2.14.1"
+  }
+}
