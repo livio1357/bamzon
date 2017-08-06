@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer')
+var colors = require('colors');
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -29,8 +30,8 @@ var connection = mysql.createConnection({
     inquirer.prompt([
     {
 
-    			name: 'id',
-    			message: 'Type in the id of the product you would like to buy.'
+    			name: colors.bgGreen('id'),
+    			message: colors.magenta('Type in the id of the product you would like to buy.')
 
 
 
@@ -39,13 +40,18 @@ var connection = mysql.createConnection({
 
 		{
 
-			name:'qty',
-			message:'Tell me how many of this product you would like to buy'
+			name: colors.bgGreen('qty'),
+			message: colors.grey('Tell me how many of this product you would like to buy')
 
 
 
 
-		}])
+		}]).then(function(answer){
+
+
+
+			
+		})
 
 
 
