@@ -4,7 +4,7 @@ Bamazon
 
 Picking to buy or add an item:
 
-![Image of buy or not to buy](http://hoorp/com/project/picking-what-todo.png)
+![Image of buy or not to buy](http://hoorp.com/project/picking-what-todo.png)
 
 buying an item from the store:
 
