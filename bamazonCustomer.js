@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    passowrd: 'root',
+    password: 'root',
     database: 'bamazon'
 
 });
@@ -15,62 +15,63 @@ var connection = mysql.createConnection({
 console.log('============Welcome to Livios BAMAZON! =============');
 
 //connection.connect(function(err) {
-//     if (err) throw err;
-//     console.log('connected as id' + connection.threadId);
-  // start();
+//   if (err) throw err;
+//  console.log('connected as id' + connection.threadId);
+//start();
 //});
 
 
 
 
-    connection.query("SELECT * FROM `products`",function(err, res){
-	if (err) return err;
+connection.query("SELECT * FROM `products`", function(err, res) {
+    if (err) return err;
 
 
-	res.forEach(function(val){
+    res.forEach(function(val) {
 
 
-console.log(val)
+        //console.log(val)
 
-		console.log("Item ID: "+val.id+" || Product Name: "+val.product_name+" || department name"+val.department_name+"|| Price $:" +val.price +"|| Stock" +val.stock_qty);
+        console.log("Item ID: " + val.id + " || Product Name: " + val.product_name + " || department name" + val.department_name + "|| Price $:" + val.price + "|| Stock" + val.stock_qty);
 
-	})
-	
-	
-	 pickup();
+    })
+
+
+    pickup();
 });
 
 
 
 var pickup = function() {
 
-    inquirer.prompt([
-    {
+    inquirer.prompt([{
 
-    			name: colors.bgGreen('id'),
-    			message: colors.magenta('Type in the id of the product you would like to buy.')
-
-
-
-		},
-
-
-		{
-
-			name: colors.bgGreen('qty'),
-			message: colors.grey('Tell me how many of this product you would like to buy')
+            name: colors.bgGreen('id'),
+            message: colors.magenta('Type in the id of the product you would like to buy.')
 
 
 
+        },
 
-		}]).then(function(answer){
+
+        {
+
+            name: colors.bgGreen('qty'),
+            message: colors.grey('Tell me how many of this product you would like to buy')
 
 
-console.log(answer)
 
-		});
 
-	}
+        },
+        
+    ]).then(function(answer) {
+
+
+        console.log(answer)
+
+    });
+
+}
 
 
 
@@ -101,7 +102,7 @@ console.log(answer)
 
 //         function(err, res) {
 //         	console.log('')
-           
+
 //       }
 
 
@@ -111,8 +112,3 @@ console.log(answer)
 
 
 // }
-
-
-
-
-
