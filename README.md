@@ -4,11 +4,11 @@ Bamazon
 
 Picking to buy or add an item:
 
-![Image of buy or not to buy](https://livio1357.github.com/bamzon/images/picking-what-todo.png)
+![Image of buy or not to buy](hoorp.com/project/picking-what-todo.png)
 
 buying an item from the store:
 
-![Image of buying an item from the store](https://livio1357.github.com/bamzon/images/click-buy.png)
+![Image of buying an item from the store](hoorp.com/project/click-buy.png)
 
 
 Taking in the id and the number of product you would like to buy:
