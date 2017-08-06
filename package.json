@@ -19,6 +19,7 @@
   "homepage": "https://github.com/livio1357/bamzon#readme",
   "dependencies": {
     "inquire": "^0.4.8",
+    "inquirer": "^3.2.1",
     "mysql": "^2.14.1"
   }
 }

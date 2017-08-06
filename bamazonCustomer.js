@@ -1,21 +1,21 @@
 var mysql = require('mysql');
-var inquire = require('inquire')
+var inquirer = require('inquirer')
 
 var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
     passowrd: 'root',
-    database: 'bamzon'
+    database: 'bamazon'
 
 });
 
 
-    connection.query("SELECT * FROM products",function(err, rows){
+    connection.query("SELECT * FROM `products`",function(err, row){
 	if (err) return err;
 
 
-	rows.forEach(function(val){
+	row.forEach(function(val){
 
 		console.log("Item ID: "+val.item_id+" || Product Name: "+val.product_name+" || department name"+val.department_name+"|| Price $" +val.price +"|| Stock" +val.stock_qty);
 
@@ -24,6 +24,31 @@ var connection = mysql.createConnection({
 	
 	
 });
+
+
+    inquirer.prompt([
+    {
+
+    			name: 'id',
+    			message: 'Type in the id of the product you would like to buy.'
+
+
+
+		},
+
+
+		{
+
+			name:'qty',
+			message:'Tell me how many of this product you would like to buy'
+
+
+
+
+		}])
+
+
+
 
 //connection.connect(function(err) {
 
@@ -39,7 +64,7 @@ var connection = mysql.createConnection({
 
 
 
-       // 'insert into products?', {
+       // 'insert into products ?', {
 
          //   product_name:'shake wait',
            // department_name: 'fitnes',
