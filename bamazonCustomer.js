@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer')
 var colors = require('colors');
+//var Table = require('cli-table');
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -11,21 +12,37 @@ var connection = mysql.createConnection({
 
 });
 
+console.log('============Welcome to Livios BAMAZON! =============');
 
-    connection.query("SELECT * FROM `products`",function(err, row){
+//connection.connect(function(err) {
+//     if (err) throw err;
+//     console.log('connected as id' + connection.threadId);
+  // start();
+//});
+
+
+
+
+    connection.query("SELECT * FROM `products`",function(err, res){
 	if (err) return err;
 
 
-	row.forEach(function(val){
+	res.forEach(function(val){
 
-		console.log("Item ID: "+val.item_id+" || Product Name: "+val.product_name+" || department name"+val.department_name+"|| Price $" +val.price +"|| Stock" +val.stock_qty);
+
+console.log(val)
+
+		console.log("Item ID: "+val.id+" || Product Name: "+val.product_name+" || department name"+val.department_name+"|| Price $:" +val.price +"|| Stock" +val.stock_qty);
 
 	})
 	
 	
-	
+	 pickup();
 });
 
+
+
+var pickup = function() {
 
     inquirer.prompt([
     {
@@ -49,49 +66,51 @@ var connection = mysql.createConnection({
 		}]).then(function(answer){
 
 
+console.log(answer)
 
-			
-		})
+		});
 
-
-
-
-//connection.connect(function(err) {
-
-  //  createProduct();
+	}
 
 
 
-//});
 
-//function createProduct() {
+// connection.connect(function(err) {
 
-  //  var query = connection.query(
-
+//    createProduct();
 
 
-       // 'insert into products ?', {
 
-         //   product_name:'shake wait',
-           // department_name: 'fitnes',
-            //price: 11.11,
-            //stock_qty: 10
+// });
+
+// function createProduct() {
+
+//    var query = connection.query(
 
 
-       // },
 
-       // function(err, res) {
-        //	console.log('')
+//        'insert into products ?', {
+
+//             product_name:'shake wait',
+//             department_name: 'fitnes',
+//             price: 11.11,
+//             stock_qty: 10
+
+
+//        },
+
+//         function(err, res) {
+//         	console.log('')
            
-      //  }
+//       }
 
 
 
-  //  )
+//   )
 
 
 
-//}
+// }
 
 
 
