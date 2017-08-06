@@ -13,16 +13,32 @@ var connection = mysql.createConnection({
 });
 
 console.log('============Welcome to Livios BAMAZON! =============');
-
+options();
 //connection.connect(function(err) {
 //   if (err) throw err;
 //  console.log('connected as id' + connection.threadId);
 //start();
 //});
+function options() {
+    inquirer
+        .prompt([{
+            name: 'action',
+            type: 'list',
+            message: 'What would you like to do?',
+            choices: ['Buy products','add product']
+        }]).then(function(answer) {
+            if (answer.action === 'Buy products') {
+                products();
+            } else if (answer.action === 'add product') {
+         	createProduct();
+            } else {
+                console.log("========>>>>>>Run Node bamazonCustomer.js to start the program again<<<<<<<<<====")
+                process.exit();
+            }
+        });
+}
 
-
-
-
+function products(){
 connection.query("SELECT * FROM `products`", function(err, res) {
     if (err) return err;
 
@@ -32,21 +48,45 @@ connection.query("SELECT * FROM `products`", function(err, res) {
 
         //console.log(val)
 
-        console.log("Item ID: " + val.id + " || Product Name: " + val.product_name + " || department name" + val.department_name + "|| Price $:" + val.price + "|| Stock" + val.stock_qty);
+        console.log("Item ID: " + val.id + " || Product Name: " + val.product_name + " || department name:" + val.department_name + " || Price $:" + val.price + "|| Stock:" + val.stock_qty);
 
     })
 
 
     pickup();
 });
+}
 
+
+
+function inventory(){
+connection.query("SELECT * FROM `products`", function(err, res) {
+    if (err) return err;
+
+
+    res.forEach(function(val) {
+
+
+        //console.log(val)
+
+        console.log("Item ID: " + val.id + " || Product Name: " + val.product_name + " || department name:" + val.department_name + " || Price $:" + val.price + "|| Stock:" + val.stock_qty);
+
+    })
+
+
+    
+});
+}
 
 
 var pickup = function() {
 
+
     inquirer.prompt([{
 
-            name: colors.bgGreen('id'),
+
+            name: 'itemID',
+            type: 'input',
             message: colors.magenta('Type in the id of the product you would like to buy.')
 
 
@@ -56,18 +96,22 @@ var pickup = function() {
 
         {
 
-            name: colors.bgGreen('qty'),
+            name: 'qty',
             message: colors.grey('Tell me how many of this product you would like to buy')
 
 
 
 
-        },
-        
+        }
+
     ]).then(function(answer) {
 
-
-        console.log(answer)
+        connection.query("SELECT * FROM products where id ='" + answer.id + "'"),
+            function(err, res) {
+                if (err) throw err;
+                console.log("Its working");
+            };
+        //   console.log(answer)
 
     });
 
@@ -79,7 +123,6 @@ var pickup = function() {
 // connection.connect(function(err) {
 
 //    createProduct();
-
 
 
 // });
@@ -112,3 +155,44 @@ var pickup = function() {
 
 
 // }
+
+function createProduct() 
+{
+    inquirer.prompt([{
+
+            name: "product_name",
+            type: "input",
+            message: colors.blue("what product would you like to add")
+        },
+
+
+        {
+            name: "department_name",
+            type: "input",
+            message: colors.blue("what department is the product in")
+        }, 
+
+        {
+            name: "price",
+            type: "input",
+            message: colors.blue("What is the price")
+        }, 
+
+        {
+            name: "stock_qty",
+            type: "input",
+            message: colors.blue("How many are you adding into the stock")
+        }
+    ]).then(function(newinfo) {
+
+
+        connection.query("INSERT INTO `bamazon`.`products` (`product_name`, `department_name`,  `price`,  `stock_qty`)  VALUES ('" + newinfo.product_name + "', '" + newinfo.department_name + "', '" + newinfo.price + "', '" + newinfo.stock_qty + "');", function(err, res) {
+            
+            if (err) throw err;
+            
+            console.log(inventory());
+            return options();
+        });
+    })
+}
+
