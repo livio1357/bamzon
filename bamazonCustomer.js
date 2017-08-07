@@ -110,30 +110,39 @@ var pickup = function() {
 
         }
 
-    ]).then(function(answer) {	
+    ]).then(function(answer) {
 
-     //console.log(answer.qty);
-   // console.log(answer.itemID);
+        //console.log(answer.qty);
+        // console.log(answer.itemID);
 
         // starting validation
 
         // check if product is in stock
+        // connection.query('SELECT id, price, stock_qty FROM products WHERE '), {
 
-        connection.query("SELECT * FROM products where id ='" + answer.itemID + "'"),
 
 
-            function(err, res) {
 
-                if (err) throw err;
+        // 	 id: answer.id
 
-               if (stock_qty < res.qty) 
+        //        }, function (err, res) {
 
-               console.log(res.itemID);
-                
-                console.log("Its working");
-            };
+        // }
+        //    //     connection.query("SELECT * FROM products where id ='" + answer.itemID + "'"),
 
-        //   console.log(answer)
+
+        //         function(err, res) {
+
+        //             if (err) throw err;
+
+        //            if (stock_qty < res.qty) 
+
+        //            console.log(res.itemID);
+
+        //             console.log("Its working");
+        //         };
+
+        //     //   console.log(answer)
 
     });
 
@@ -141,7 +150,28 @@ var pickup = function() {
 
 //update database
 
-var update = function()  {}
+var update = function() {
+
+
+    connection.query("SELECT id# 1 FROM `products`", function(err, res) {
+        if (err) return err;
+
+
+        res.forEach(function(val) {
+
+
+
+            console.log("Item ID: " + val.id);
+            //console.log(val)
+
+
+        })
+
+
+
+    });
+
+}
 
 
 // connection.connect(function(err) {
