@@ -112,37 +112,69 @@ var pickup = function() {
 
     ]).then(function(answer) {
 
-        //console.log(answer.qty);
-        // console.log(answer.itemID);
+            //console.log(answer.qty);
+            // console.log(answer.itemID);
 
-        // starting validation
+            // starting validation
 
-        // check if product is in stock
-        // connection.query('SELECT id, price, stock_qty FROM products WHERE '), {
-
-
+            // check if product is in stock
+            connection.query('SELECT stock_qty FROM products WHERE ? '), [{
 
 
-        // 	 id: answer.id
-
-        //        }, function (err, res) {
-
-        // }
-        //    //     connection.query("SELECT * FROM products where id ='" + answer.itemID + "'"),
 
 
-        //         function(err, res) {
+                    id: answer.itemID
+                }],
 
-        //             if (err) throw err;
+         function(err, res) {
 
-        //            if (stock_qty < res.qty) 
 
-        //            console.log(res.itemID);
 
-        //             console.log("Its working");
-        //         };
 
-        //     //   console.log(answer)
+
+            //   
+
+
+
+            //     connection.query("SELECT * FROM products where id ='" + answer.itemID + "'"),
+
+
+            //         function(err, res) {
+
+            //             if (err) throw err;
+
+            if (res[0].stock_qty < answer.qty) {
+
+                //    console.log();
+
+                console.log("not enough");
+            } else {
+
+                connection.query("update products set ? where ?", function(err, res) {
+                    if (err) return err;
+
+
+                    res.forEach(function(val) {
+
+
+
+                        console.log("Item ID: " + val.id);
+                        //console.log(val)
+
+
+                    })
+
+
+
+                });
+
+
+
+            }
+
+            // 
+        }
+        //   console.log(answer)
 
     });
 
@@ -150,28 +182,28 @@ var pickup = function() {
 
 //update database
 
-var update = function() {
+//var update = function() {
 
 
-    connection.query("SELECT id# 1 FROM `products`", function(err, res) {
-        if (err) return err;
+// connection.query("SELECT id# 1 FROM `products`", function(err, res) {
+//     if (err) return err;
 
 
-        res.forEach(function(val) {
-
-
-
-            console.log("Item ID: " + val.id);
-            //console.log(val)
-
-
-        })
+//     res.forEach(function(val) {
 
 
 
-    });
+//         console.log("Item ID: " + val.id);
+//         //console.log(val)
 
-}
+
+//     })
+
+
+
+// });
+
+// }
 
 
 // connection.connect(function(err) {
