@@ -110,9 +110,14 @@ var pickup = function() {
 
         }
 
-    ]).then(function(answer) {
+    ]).then(function(answer) {	
+
+     //console.log(answer.qty);
+   // console.log(answer.itemID);
 
         // starting validation
+
+        // check if product is in stock
 
         connection.query("SELECT * FROM products where id ='" + answer.itemID + "'"),
 
@@ -121,6 +126,10 @@ var pickup = function() {
 
                 if (err) throw err;
 
+               if (stock_qty < res.qty) 
+
+               console.log(res.itemID);
+                
                 console.log("Its working");
             };
 
@@ -130,7 +139,9 @@ var pickup = function() {
 
 }
 
+//update database
 
+var update = function()  {}
 
 
 // connection.connect(function(err) {
@@ -208,4 +219,8 @@ function createProduct() {
             return options();
         });
     })
+
+
+
+    connection.end();
 }
